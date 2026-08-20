@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm run test:fixtures
+      - run: cargo test --workspace
+      - name: Verify tag matches VERSION
+        shell: bash
+        run: test "${GITHUB_REF_NAME#v}" = "$(tr -d '\r\n' < VERSION)"
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+

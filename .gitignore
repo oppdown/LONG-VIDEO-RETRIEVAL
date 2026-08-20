@@ -1,0 +1,13 @@
+node_modules/
+target/
+dist/
+build/
+.tauri/
+.env
+.env.*
+!.env.example
+*.log
+coverage/
+.DS_Store
+Thumbs.db
+

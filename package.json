@@ -1,0 +1,15 @@
+{
+  "name": "long-video-retrieval",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Windows-first multimodal long-video retrieval and dense temporal analysis.",
+  "license": "MIT",
+  "scripts": {
+    "test:fixtures": "node --test tests/fixture-schema.test.mjs",
+    "test": "npm run test:fixtures && cargo test --workspace",
+    "docs:serve": "python -m http.server 8000 --directory docs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

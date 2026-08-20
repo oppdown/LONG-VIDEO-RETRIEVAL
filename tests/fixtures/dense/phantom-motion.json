@@ -1,0 +1,9 @@
+{
+  "id": "dense-phantom-motion-001",
+  "description": "A tiny pixel digest change lacks corroborating energy or entity displacement and must be reviewed.",
+  "expected": "suspicious_pixel_only_change",
+  "frames": [
+    { "source_frame_index": 400, "pts_us": 16000000, "pixel_digest": "stable", "changed_pixel_ratio": 0.0, "motion_energy": 0.0, "entity_displacement": 0.0, "motion_change": 0.0 },
+    { "source_frame_index": 401, "pts_us": 16033333, "pixel_digest": "drift", "changed_pixel_ratio": 0.005, "motion_energy": 0.0001, "entity_displacement": 0.0, "motion_change": 0.0 }
+  ]
+}

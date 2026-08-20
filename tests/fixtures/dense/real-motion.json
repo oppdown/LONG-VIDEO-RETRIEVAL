@@ -1,0 +1,10 @@
+{
+  "id": "dense-real-motion-001",
+  "description": "A subject moves across consecutive source frames with corroborating pixel, energy, and track signals.",
+  "expected": "real_motion",
+  "frames": [
+    { "source_frame_index": 100, "pts_us": 4000000, "pixel_digest": "a", "changed_pixel_ratio": 0.0, "motion_energy": 0.0, "entity_displacement": 0.0, "motion_change": 0.0 },
+    { "source_frame_index": 101, "pts_us": 4033333, "pixel_digest": "b", "changed_pixel_ratio": 0.32, "motion_energy": 0.70, "entity_displacement": 0.18, "motion_change": 0.0 },
+    { "source_frame_index": 102, "pts_us": 4066666, "pixel_digest": "c", "changed_pixel_ratio": 0.29, "motion_energy": 0.62, "entity_displacement": 0.16, "motion_change": 0.0 }
+  ]
+}

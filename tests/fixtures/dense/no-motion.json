@@ -1,0 +1,9 @@
+{
+  "id": "dense-no-motion-001",
+  "description": "Consecutive source frames remain identical and all motion signals remain at zero.",
+  "expected": "no_change",
+  "frames": [
+    { "source_frame_index": 200, "pts_us": 8000000, "pixel_digest": "same", "changed_pixel_ratio": 0.0, "motion_energy": 0.0, "entity_displacement": 0.0, "motion_change": 0.0 },
+    { "source_frame_index": 201, "pts_us": 8033333, "pixel_digest": "same", "changed_pixel_ratio": 0.0, "motion_energy": 0.0, "entity_displacement": 0.0, "motion_change": 0.0 }
+  ]
+}

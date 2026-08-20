@@ -1,0 +1,9 @@
+{
+  "id": "dense-motion-change-001",
+  "description": "A new motion cue begins while the source remains temporally adjacent.",
+  "expected": "motion_change",
+  "frames": [
+    { "source_frame_index": 300, "pts_us": 12000000, "pixel_digest": "a", "changed_pixel_ratio": 0.0, "motion_energy": 0.0, "entity_displacement": 0.0, "motion_change": 0.0 },
+    { "source_frame_index": 301, "pts_us": 12033333, "pixel_digest": "b", "changed_pixel_ratio": 0.21, "motion_energy": 0.18, "entity_displacement": 0.03, "motion_change": 0.40 }
+  ]
+}

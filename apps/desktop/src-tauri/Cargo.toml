@@ -1,0 +1,13 @@
+[package]
+name = "long-video-retrieval-desktop"
+version = "0.1.0"
+description = "Windows-first desktop shell for LONG VIDEO RETRIEVAL"
+authors = ["LONG VIDEO RETRIEVAL contributors"]
+edition = "2021"
+
+[lib]
+name = "long_video_retrieval_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+

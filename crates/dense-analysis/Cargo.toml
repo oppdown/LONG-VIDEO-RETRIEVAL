@@ -1,0 +1,10 @@
+[package]
+name = "lvr-dense-analysis"
+version = "0.1.0"
+edition = "2021"
+description = "Exact source-frame-by-source-frame comparison primitives for LONG VIDEO RETRIEVAL."
+license = "MIT"
+
+[lints.rust]
+unsafe_code = "forbid"
+
