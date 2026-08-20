@@ -1,28 +1,76 @@
-name: Release
+name: Windows release
 
 on:
   push:
     tags:
       - 'v*.*.*'
+      - 'v*.*.*-*'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  validate-and-release:
+  validate-tag:
+    name: Validate release version
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate tag against VERSION
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          version="$(tr -d '\r\n' < VERSION)"
+          tag="${GITHUB_REF_NAME}"
+          if [[ ! "$tag" =~ ^v${version}(-.+)?$ ]]; then
+            echo "Tag $tag does not match VERSION $version"
+            exit 1
+          fi
+
+  build-windows:
+    name: Build Windows installers
+    needs: validate-tag
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - uses: dtolnay/rust-toolchain@stable
-      - run: npm run test:fixtures
-      - run: cargo test --workspace
-      - name: Verify tag matches VERSION
-        shell: bash
-        run: test "${GITHUB_REF_NAME#v}" = "$(tr -d '\r\n' < VERSION)"
-      - uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          targets: x86_64-pc-windows-msvc
+      - name: Install desktop dependencies
+        working-directory: apps/desktop
+        run: npm install --no-audit --no-fund
+      - name: Generate application icons
+        working-directory: apps/desktop
+        run: npm run tauri -- icon src-tauri/icons/app-icon.svg
+      - name: Build Tauri installers
+        working-directory: apps/desktop
+        run: npm run tauri -- build
+      - name: Upload Windows installers
+        uses: actions/upload-artifact@v4
+        with:
+          name: LONG-VIDEO-RETRIEVAL-windows-${{ github.ref_name }}
+          if-no-files-found: error
+          path: |
+            apps/desktop/src-tauri/target/release/bundle/nsis/*.exe
+            apps/desktop/src-tauri/target/release/bundle/msi/*.msi
 
+  publish-release:
+    name: Publish public release
+    if: github.event_name == 'push'
+    needs: build-windows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Windows installers
+        uses: actions/download-artifact@v4
+        with:
+          name: LONG-VIDEO-RETRIEVAL-windows-${{ github.ref_name }}
+          path: release-assets
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/**/*
+          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}

@@ -1,7 +1,9 @@
 //! Future Tauri commands live here. Keep media access and credentials native-side.
 
 pub fn run() {
-    // Tauri initialization will be added with the first desktop-runtime milestone.
+    tauri::Builder::default()
+        .run(tauri::generate_context!())
+        .expect("error while running LONG VIDEO RETRIEVAL");
 }
 
 #[cfg(test)]

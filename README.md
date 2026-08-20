@@ -6,7 +6,7 @@ LONG VIDEO RETRIEVAL is an early implementation skeleton for a desktop applicati
 
 ## Project status
 
-This repository is pre-alpha. The dense temporal analysis contract, regression fixtures, documentation site, CI, and application boundaries are in place. Media decoding, waveform extraction, transcription, model transport, and production Tauri packaging are intentionally staged for later milestones.
+This repository is pre-alpha. The dense temporal analysis contract, regression fixtures, documentation site, CI, application boundaries, and a buildable Windows test shell are in place. Media decoding, waveform extraction, transcription, model transport, and production signing remain later milestones.
 
 ## Core promise
 
@@ -52,7 +52,15 @@ npm run test:fixtures
 cargo test --workspace
 ```
 
-The desktop shell is intentionally a static placeholder until the first Tauri dependency milestone. Its package scripts document the intended entry points without requiring a network install to validate the Rust evidence core.
+To build the desktop shell locally after installing the desktop dependencies:
+
+```powershell
+cd apps/desktop
+npm install
+npm run tauri -- build
+```
+
+Public Windows `.exe` and `.msi` test packages are published from tagged GitHub releases and linked from the [documentation site](https://oppdown.github.io/LONG-VIDEO-RETRIEVAL/).
 
 ## Evidence and privacy
 
@@ -65,4 +73,3 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md
 ## License
 
 LONG VIDEO RETRIEVAL is released under the MIT License. See [LICENSE](LICENSE).
-
