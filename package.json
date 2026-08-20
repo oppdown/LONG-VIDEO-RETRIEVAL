@@ -7,7 +7,8 @@
   "scripts": {
     "test:fixtures": "node --test tests/fixture-schema.test.mjs",
     "test:ui-contract": "node --test tests/desktop-ui-contract.test.mjs",
-    "test": "npm run test:fixtures && npm run test:ui-contract && cargo test --workspace",
+    "test:docs-contract": "node --test tests/docs-site-contract.test.mjs",
+    "test": "npm run test:fixtures && npm run test:ui-contract && npm run test:docs-contract && cargo test --workspace",
     "docs:serve": "python -m http.server 8000 --directory docs"
   },
   "engines": {
