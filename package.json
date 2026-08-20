@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test:fixtures": "node --test tests/fixture-schema.test.mjs",
-    "test": "npm run test:fixtures && cargo test --workspace",
+    "test:ui-contract": "node --test tests/desktop-ui-contract.test.mjs",
+    "test": "npm run test:fixtures && npm run test:ui-contract && cargo test --workspace",
     "docs:serve": "python -m http.server 8000 --directory docs"
   },
   "engines": {

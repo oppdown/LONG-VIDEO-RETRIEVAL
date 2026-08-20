@@ -5,6 +5,13 @@ title: Changelog
 
 # Detailed changelog
 
+## Unreleased — task intake controls
+
+- Replaced the task-profile dropdown with an accessible radio-button list covering all five task profiles.
+- Added explicit modality badges so audio-required and video-only behavior stays visible during testing.
+- Added local video selection/drag-and-drop and a prompt/question editor for exact task text.
+- Added a regression contract test covering the radio list, prompt field, file input, and no-dropdown requirement.
+
 ## 0.1.0 — 2026-08-20
 
 The first public foundation of LONG VIDEO RETRIEVAL is now available.
@@ -36,4 +43,3 @@ The first public foundation of LONG VIDEO RETRIEVAL is now available.
 - local transcript/audio-event extraction;
 - opt-in OpenAI evidence-bundle adapter;
 - signed Windows packaging and licensed media regression clips.
-
