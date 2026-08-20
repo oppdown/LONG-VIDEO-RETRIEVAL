@@ -158,7 +158,15 @@ fn compare_pair(
 mod tests {
     use super::*;
 
-    fn frame(index: u64, pts_us: i64, digest: &str, pixels: f32, energy: f32, displacement: f32, change: f32) -> SourceFrame {
+    fn frame(
+        index: u64,
+        pts_us: i64,
+        digest: &str,
+        pixels: f32,
+        energy: f32,
+        displacement: f32,
+        change: f32,
+    ) -> SourceFrame {
         SourceFrame {
             source_frame_index: index,
             pts_us,
@@ -183,7 +191,10 @@ mod tests {
         assert_eq!(result.comparisons[0].from_source_frame_index, 10);
         assert_eq!(result.comparisons[0].to_source_frame_index, 11);
         assert_eq!(result.comparisons[1].to_pts_us, 1_066);
-        assert!(result.comparisons.iter().all(|c| c.classification == MotionClassification::RealMotion));
+        assert!(result
+            .comparisons
+            .iter()
+            .all(|c| c.classification == MotionClassification::RealMotion));
     }
 
     #[test]
@@ -195,7 +206,10 @@ mod tests {
         let result = analyze_dense_window(&frames, DenseAnalysisConfig::default()).unwrap();
         let comparison = &result.comparisons[0];
         assert!(comparison.phantom_motion_suspected);
-        assert_eq!(comparison.classification, MotionClassification::SuspiciousPixelOnlyChange);
+        assert_eq!(
+            comparison.classification,
+            MotionClassification::SuspiciousPixelOnlyChange
+        );
     }
 
     #[test]
@@ -205,7 +219,10 @@ mod tests {
             frame(21, 2_033, "b", 0.25, 0.2, 0.03, 0.3),
         ];
         let result = analyze_dense_window(&frames, DenseAnalysisConfig::default()).unwrap();
-        assert_eq!(result.comparisons[0].classification, MotionClassification::MotionChange);
+        assert_eq!(
+            result.comparisons[0].classification,
+            MotionClassification::MotionChange
+        );
     }
 
     #[test]
@@ -228,4 +245,3 @@ mod tests {
         assert!(error.contains("PTS is not increasing"));
     }
 }
-
