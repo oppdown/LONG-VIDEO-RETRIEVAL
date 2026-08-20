@@ -44,7 +44,13 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Generate application icons
         working-directory: apps/desktop
-        run: npm run tauri -- icon src-tauri/icons/app-icon.svg
+        run: npm run tauri -- icon src-tauri/icons/app-icon.svg --output src-tauri/icons
+      - name: Verify Windows icon output
+        working-directory: apps/desktop
+        shell: pwsh
+        run: |
+          Get-ChildItem src-tauri/icons | Select-Object Name, Length
+          if (-not (Test-Path src-tauri/icons/icon.ico)) { throw 'Tauri icon generation did not produce icons/icon.ico' }
       - name: Build Tauri installers
         working-directory: apps/desktop
         run: npm run tauri -- build
